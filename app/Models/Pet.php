@@ -9,7 +9,7 @@ class Pet extends Model
 {
     use HasFactory;
 
-    public $timestamp = false;
+    public $timestamps = false;
 
     public $fillable = ['category', 'name', 'photoUrls', 'tags', 'status'];
 }
