@@ -21,4 +21,6 @@ Route::post('/tags', [TagController::class, 'addTag']);
 
 //Pets
 Route::get('/pets', [PetController::class, 'listPets']);
-Route::post('/pets', [PetController::class, 'addPet']);
+Route::post('/pet', [PetController::class, 'addPet']);
+Route::get('/pet/findByStatus', [PetController::class, 'getPetsByStatus']);
+Route::get('/pet/{petId}', [PetController::class, 'getPetById']);

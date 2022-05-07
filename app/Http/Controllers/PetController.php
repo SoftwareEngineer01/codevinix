@@ -16,6 +16,15 @@ class PetController extends Controller
         $pets = Pet::all();
         return response()->json(PetResource::collection($pets));        
     }
+   
+    public function getPetsByStatus(Request $request) {
+        $pets = Pet::where('status', $request->input('status'))->get();
+        return response()->json(PetResource::collection($pets));
+    }
+
+    public function getPetById(Pet $petId) {
+        return response()->json(new PetResource($petId));
+    }
         
     public function addPet(PetRequest $request) {
         $random = random_int(1, 100);
