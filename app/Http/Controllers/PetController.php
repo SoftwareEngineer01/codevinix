@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\PetRequest;
 use App\Models\Pet;
 use App\Models\Tag;
+use Illuminate\Http\Request;
+use App\Http\Requests\PetRequest;
+use App\Http\Requests\UpdatePetRequest;
 use App\Http\Resources\PetResource;
 
 class PetController extends Controller
@@ -43,5 +44,26 @@ class PetController extends Controller
             'message' => 'Pet added successfully',
         ]);
     }
+
+    public function updatePet(UpdatePetRequest $request) {
+        $pet = Pet::find($request->input('id'));
+       
+        $pet->update($request->validated());
+
+        return response()->json([
+            'success' => true,
+            'pet' => $pet,
+            'message' => 'Pet updated successfully',
+        ]);
+    }
+
+    public function deletePet(Pet $petId) {                   
+        $petId->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Pet deleted successfully',
+        ]);
+    }    
 
 }
